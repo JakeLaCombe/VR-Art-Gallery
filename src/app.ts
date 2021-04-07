@@ -1,23 +1,29 @@
 import "@babylonjs/core/Debug/debugLayer";
 import "@babylonjs/inspector";
 import "@babylonjs/loaders/glTF";
-import { Engine, Scene, ArcRotateCamera, Vector3, HemisphericLight, Mesh, MeshBuilder, FlyCamera } from "@babylonjs/core";
+import { Engine, Scene, ArcRotateCamera, Vector3, HemisphericLight, Mesh, MeshBuilder, FlyCamera, SceneLoader } from "@babylonjs/core";
+import GalleryScene from './blender_scenes/Gallery.babylon'
 
 class App {
+   canvas: HTMLCanvasElement = document.createElement("canvas");
+
     constructor() {
         // create the canvas html element and attach it to the webpage
-        var canvas = document.createElement("canvas");
-        canvas.style.width = "100%";
-        canvas.style.height = "100%";
-        canvas.id = "gameCanvas";
-        document.body.appendChild(canvas);
+        this.canvas.style.width = "100%";
+        this.canvas.style.height = "100%";
+        this.canvas.id = "gameCanvas";
+        document.body.appendChild(this.canvas);
         // initialize babylon scene and engine
-        var engine = new Engine(canvas, true);
-        var scene = new Scene(engine);
+       
+    }
+
+    async init() {
+        var engine = new Engine(this.canvas, true);
+        var scene = await SceneLoader.LoadAsync(GalleryScene);
         var camera: FlyCamera =  new FlyCamera("FlyCamera", new Vector3(0, 5, -10), scene);
         camera.attachControl(true);
-        var light1: HemisphericLight = new HemisphericLight("light1", new Vector3(1, 1, 0), scene);
-        var sphere: Mesh = MeshBuilder.CreateSphere("sphere", { diameter: 1 }, scene);
+        //var light1: HemisphericLight = new HemisphericLight("light1", new Vector3(1, 1, 0), scene);
+        // var sphere: Mesh = MeshBuilder.CreateSphere("sphere", { diameter: 1 }, scene);
         // hide/show the Inspector
         window.addEventListener("keydown", (ev) => {
             // Shift+Ctrl+Alt+I
@@ -35,4 +41,6 @@ class App {
         });
     }
 }
-new App();
+
+const app = new App();
+app.init();

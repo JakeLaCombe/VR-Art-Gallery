@@ -19,6 +19,14 @@ module.exports = {
                 use: "ts-loader",
                 exclude: /node_modules/,
             },
+            {
+                test: /\.(png|jpe?g|gif|glb|gltf|babylon)$/i,
+                loader: 'file-loader',
+                options: {
+                    publicPath: './',
+                    name: '[name].[ext]'
+                }
+            }
         ],
     },
     plugins: [
