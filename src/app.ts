@@ -1,7 +1,7 @@
 import "@babylonjs/core/Debug/debugLayer";
 import "@babylonjs/inspector";
 import "@babylonjs/loaders/glTF";
-import { Engine, Scene, ArcRotateCamera, Vector3, HemisphericLight, Mesh, MeshBuilder, FlyCamera, SceneLoader } from "@babylonjs/core";
+import { Engine, Scene, ArcRotateCamera, Vector3, HemisphericLight, Mesh, MeshBuilder, FlyCamera, SceneLoader, SpotLight, PointLight } from "@babylonjs/core";
 import GalleryScene from './blender_scenes/Gallery.babylon'
 
 class App {
@@ -22,7 +22,8 @@ class App {
         var scene = await SceneLoader.LoadAsync(GalleryScene);
         var camera: FlyCamera =  new FlyCamera("FlyCamera", new Vector3(0, 5, -10), scene);
         camera.attachControl(true);
-        //var light1: HemisphericLight = new HemisphericLight("light1", new Vector3(1, 1, 0), scene);
+        // new HemisphericLight("light1", new Vector3(20, 200, 20), scene);
+        // new PointLight("Spot0", new Vector3(0, 100, 5), scene);
         // var sphere: Mesh = MeshBuilder.CreateSphere("sphere", { diameter: 1 }, scene);
         // hide/show the Inspector
         window.addEventListener("keydown", (ev) => {
