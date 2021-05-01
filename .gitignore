@@ -18,7 +18,6 @@ dist/
 # javascript files
 src/**/*.js
 !src/webpack.config.js
-src/**/*.d.ts
 !src/LibDeclarations/*.d.ts
 loaders/src/**/*.js
 materialsLibrary/src/**/*.js
