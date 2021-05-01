@@ -1,7 +1,7 @@
 import "@babylonjs/core/Debug/debugLayer";
 import "@babylonjs/inspector";
 import "@babylonjs/loaders/glTF";
-import { Engine, Scene, ArcRotateCamera, Vector3, HemisphericLight, Mesh, MeshBuilder, FlyCamera, SceneLoader, SpotLight, PointLight } from "@babylonjs/core";
+import { Engine, Scene, ArcRotateCamera, Vector3, HemisphericLight, Mesh, MeshBuilder, FlyCamera, SceneLoader, SpotLight, PointLight, UniversalCamera } from "@babylonjs/core";
 import GalleryScene from './blender_scenes/Gallery.babylon'
 
 class App {
@@ -20,8 +20,23 @@ class App {
     async init() {
         var engine = new Engine(this.canvas, true);
         var scene = await SceneLoader.LoadAsync(GalleryScene);
-        var camera: FlyCamera =  new FlyCamera("FlyCamera", new Vector3(0, 5, -10), scene);
+        var camera: UniversalCamera =  new UniversalCamera("UniversalCamera", new Vector3(0, 20 -10), scene);
         camera.attachControl(true);
+        camera.applyGravity = true;
+        camera.ellipsoid = new Vector3(1, 3, 1);
+
+        const assumedFramesPerSecond = 60;
+        const earthGravity = -9.81;
+        scene.gravity = new Vector3(0, earthGravity / assumedFramesPerSecond, 0);
+        scene.collisionsEnabled = true;
+        camera.checkCollisions = true;
+        const mesh = scene.getNodeByID("Walls") as Mesh;
+        mesh.checkCollisions = true;
+        mesh.getChildMeshes().forEach(mesh => {
+            mesh.checkCollisions = true;
+        })
+        
+        
         // new HemisphericLight("light1", new Vector3(20, 200, 20), scene);
         // new PointLight("Spot0", new Vector3(0, 100, 5), scene);
         // var sphere: Mesh = MeshBuilder.CreateSphere("sphere", { diameter: 1 }, scene);
