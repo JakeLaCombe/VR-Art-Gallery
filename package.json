@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack",
-    "start": "webpack serve --port 8080"
+    "start": "webpack serve --port 8080",
+    "start-https": "webpack serve --port 443 --https --host 0.0.0.0"
   },
   "author": "",
   "license": "ISC",
