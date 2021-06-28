@@ -31,7 +31,7 @@ class App {
         scene.gravity = new Vector3(0, earthGravity / assumedFramesPerSecond, 0);
         scene.collisionsEnabled = true;
         scene.createDefaultXRExperienceAsync({
-            floorMeshes: [scene.getNodeByID("Floor") as Mesh],
+            floorMeshes: [scene.getNodeByID("Floor") as Mesh, scene.getNodeByID("Stairs") as Mesh],
         });
 
         camera.checkCollisions = true;
