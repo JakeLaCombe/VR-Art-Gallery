@@ -20,22 +20,22 @@ class App {
     async init() {
         var engine = new Engine(this.canvas, true);
         var scene = await SceneLoader.LoadAsync(GalleryScene);
-        var camera: UniversalCamera =  new UniversalCamera("UniversalCamera", new Vector3(-20, 7, 20), scene);
-        camera.target = new Vector3(-10, 8, -20);
+        var camera: UniversalCamera =  new UniversalCamera("UniversalCamera", new Vector3(0, 0, 0), scene);
+        camera.target = new Vector3(-10, 0, 21);
         camera.attachControl(true);
         camera.applyGravity = true;
-        camera.ellipsoid = new Vector3(1, 3, 1);
+        camera.ellipsoid = new Vector3(30, 30, 30);
 
         const assumedFramesPerSecond = 60;
         const earthGravity = -9.81;
         scene.gravity = new Vector3(0, earthGravity / assumedFramesPerSecond, 0);
         scene.collisionsEnabled = true;
         scene.createDefaultXRExperienceAsync({
-            floorMeshes: [scene.getNodeByID("Floor") as Mesh, scene.getNodeByID("Stairs") as Mesh],
+            floorMeshes: [scene.getNodeByID("Floor") as Mesh, scene.getNodeByID("Stairs") as Mesh, scene.getNodeByID("2nd Level Floor") as Mesh],
         });
 
         camera.checkCollisions = true;
-        const mesh = scene.getNodeByID("Walls") as Mesh;
+        const mesh = scene.getNodeByID("First Floor Walls") as Mesh;
         mesh.checkCollisions = true;
         mesh.getChildMeshes().forEach(mesh => {
             mesh.checkCollisions = true;
