@@ -7,6 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack",
     "start": "webpack serve --port 8080",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist",
     "start-https": "webpack serve --port 443 --https --host 0.0.0.0"
   },
   "author": "",
@@ -16,6 +18,7 @@
     "@babylonjs/inspector": "^4.2.0",
     "clean-webpack-plugin": "^3.0.0",
     "file-loader": "^6.2.0",
+    "gh-pages": "^3.2.3",
     "html-webpack-plugin": "^5.3.1",
     "ts-loader": "^8.1.0",
     "typescript": "^4.2.3",
