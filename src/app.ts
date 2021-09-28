@@ -20,7 +20,7 @@ class App {
     async init() {
         var engine = new Engine(this.canvas, true);
         var scene = await SceneLoader.LoadAsync(GalleryScene);
-        var camera: UniversalCamera =  new UniversalCamera("UniversalCamera", new Vector3(0, 10, -10), scene);
+        var camera: UniversalCamera =  new UniversalCamera("UniversalCamera", new Vector3(0, 6, -5), scene);
         camera.target = new Vector3(-15, 0, 21);
         camera.attachControl(true);
         camera.applyGravity = true;
