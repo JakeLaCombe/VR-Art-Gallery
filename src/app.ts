@@ -20,11 +20,11 @@ class App {
     async init() {
         var engine = new Engine(this.canvas, true);
         var scene = await SceneLoader.LoadAsync(GalleryScene);
-        var camera: UniversalCamera =  new UniversalCamera("UniversalCamera", new Vector3(0, 0, 0), scene);
-        camera.target = new Vector3(-10, 0, 21);
+        var camera: UniversalCamera =  new UniversalCamera("UniversalCamera", new Vector3(0, 10, -10), scene);
+        camera.target = new Vector3(-15, 0, 21);
         camera.attachControl(true);
         camera.applyGravity = true;
-        camera.ellipsoid = new Vector3(30, 30, 30);
+        camera.ellipsoid = new Vector3(1, 1, 1);
 
         const assumedFramesPerSecond = 60;
         const earthGravity = -9.81;
